@@ -27,7 +27,9 @@ SECRET_KEY = 'django-insecure-(n502r6f4$!e*_v*22lnj_#d4qzd2=@&h)9gru)m=hvofog^@l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['musicaapp.onrender.com', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://musicaapp.onrender.com/*', 'http://127.0.0.1/*']
+
 
 AUTH_USER_MODEL = 'usuarios.CustomUser'
 
