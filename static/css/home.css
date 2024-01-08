@@ -1,0 +1,43 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Lato:wght@700;900&display=swap');
+
+*
+{
+    font-family: 'Lato' !important;
+    font-weight: 700;
+}
+
+body
+{
+    background: linear-gradient(gray, black );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+a
+{
+    text-decoration: none !important;
+}
+
+
+header span
+{
+    font-size: 1.2rem;
+}
+@media(max-width:768px)
+{
+    .music
+    {
+        font-size:2rem !important;
+    }
+}
+
+@media(max-width:334px)
+{
+    header span
+    {
+        font-size:1rem !important;
+    }
+}
