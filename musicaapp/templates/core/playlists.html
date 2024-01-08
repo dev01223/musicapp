@@ -1,0 +1,294 @@
+{%load static%}
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/home.css'%}">
+
+</head>
+
+<body>
+
+   
+
+    {% if user.is_authenticated %}
+    <form class="mt-5 d-flex align-items-center " action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="nav-item nav-link" style="border:none; background:none; color:#fff;">Sair</button>
+    </form>
+{% endif %}     
+<div class="mt-3 container d-flex justify-content-center flex-column align-items-center">
+   <span class="text-center" style="color:#fff; font-size:1.6rem">Saldo disponível</span> 
+   <div class="d-flex align-items-center justify-content-center mb-2" style="gap:.5rem">    <img style="height:2rem" src="{%static 'img\moedas (1).png' %}">
+    <span class="text-center valor" style="color:#fff; font-size:1.6rem">{{user.saldo}}</span> </div>
+    <div class="progress-bar" style="width:30rem; position: relative; height: .5rem; background: rgb(193, 190, 190);">
+    <span class="inner-bar" style="width: 33%; position:absolute; background: rgb(33, 149, 33); height: 100%; left:0; top:0;"></span></div>
+</div> 
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+
+<button class="dobroBtn" style="display: none; background: rgb(255, 238, 238); padding:.7rem 2rem; font-size:2rem; border-radius:30px; outline: none; border: none; box-shadow: rgb(117, 255, 117) 5px 5px;">RECEBA EM DOBRO</button>
+
+</div>
+
+<div class="container mt-3 mb-5">
+    <div class="d-flex container flex-column justify-content-center align-items-center" style="max-width:30rem;   border-radius:15px;">
+<img style="height: 17rem;" src="{%static 'img\Untitled design.png' %}">
+<span class="music mt-2 text-center" style="font-size: 4rem; font-weight: 500; color:#fff !important; padding:.7rem 4.5rem; border-radius:70px; border:solid 4px #fff; box-shadow: #fff 0px 0px 20px;"> Music Pay</span>
+
+
+<div class=" mt-4 d-flex text-center player align-items-center" style="border-radius:4px; padding:1.2rem 2rem; gap:3.5rem;">
+  
+    <img style="height:3rem" class="repetir" src="{%static 'img\repetir.png' %}">
+
+    <img id="prev" style="height:3rem; transform: rotate(180deg);"  src="{% static 'img\proximo.png' %}">
+
+    <img id="play" style="height:3rem" src="{%static 'img\botao-play-ponta-de-seta.png' %}">
+
+
+    <img id="next" style="height:3rem" src="{%static 'img\proximo.png' %}">
+    <img style="height:3rem" class="compartilhar" src="{%static 'img\compartilhar.png' %}">
+
+
+
+</div>
+<div class="d-flex justify-content-start align-items-center flex-column w-100">
+
+
+</div>
+
+    </div>
+
+</div>
+
+<div class="main-container align-items-center justify-content-center" style="background:rgba(0, 0, 0, 0.35);top:0; height: 100vh; width:100vw; position: fixed; display: none; ">
+
+    <div class="container d-flex justify-content-center">
+    <div class="d-flex flex-column p-4  align-items-center" style="width:30rem; max-width:100%; background: #fff; border-radius:12px;">
+
+        <span class="mt-1">Saldo Atualizado!</span>
+        <span class="mt-3" style="font-size:1rem">Você recebeu:</span>
+        <span class="mt-1" style="font-size:2rem; font-weight: 900;">R$ 69.00</span>
+        <span class="mt-1" style="font-size:1rem">Pelo código da Nike</span>
+
+
+
+    </div>
+</div>
+
+</div>
+<div id="minhaDiv" style="color:#fff"></div>
+
+<div class="fluid-container mb-4 d-flex justify-content-center align-items-center flex-column text-center w-100" style="border-top:solid 2px rgb(54, 218, 54);">
+
+    <d iv class="container flex-mobile mt-3 mb-5 d-flex justify-content-center align-items-center" style="gap:4.5rem;">
+        <a id="spotify-button" target="_blank" href="https://open.spotify.com/intl-pt"><img style="height:7rem" src="{%static 'img\spotify (2).png' %}"></a>
+        <a id="youtube-button" target="_blank" href="https://www.youtube.com/"><img style="height:7rem" src="{%static 'img\youtube (5).png' %}"></a>
+        <a id="apple-button"target="_blank" href="https://www.apple.com/br/apple-music/"><img style="height:7rem" src="{%static 'img\logotipo-da-apple-em-formato-preto-com-um-orificio-de-mordida.png' %}"></a>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>    
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const csrftoken = getCookie('csrftoken');
+
+    let lastClickedTime = 0;
+
+    function handleLinkClick() {
+        const currentTime = new Date().getTime();
+        if (currentTime - lastClickedTime > 20000) { // 20 segundos
+            lastClickedTime = currentTime;
+            // Chama a função para atualizar o saldo
+            updateSaldo();
+        }
+    }
+    
+    function updateSaldo() {
+        fetch('update_money/', {
+            headers: {'X-CSRFToken': csrftoken},
+            method: 'POST',
+            // Adicione aqui cabeçalhos necessários, como CSRF token
+        }).then(response => {
+            if (response.ok) {
+                console.log("Saldo atualizado");
+            }
+        });
+    }
+    
+    document.querySelectorAll('a[id$="-button"]').forEach(button => {
+        button.addEventListener('click', handleLinkClick);
+    });
+
+});
+
+</script>
+<a href="playlist1.html" style="background:rgb(39, 172, 39); width: fit-content; border-radius:20px; padding:.7rem 2rem; font-size:2.2rem; letter-spacing: 4px; color: #fff;">SAQUE</a>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+<script>
+    var timer = null;
+    let valor = document.querySelector('.valor')
+    let inner = document.querySelector('.inner-bar')
+            var elapsedTime = 0; // Tempo em milissegundos
+    
+            function startTimer() {
+                if (timer === null) {
+                    timer = setInterval(updateTime, 1000); // Atualiza a cada segundo
+                }
+            }
+    
+            function pauseTimer() {
+                if (timer !== null) {
+                    clearInterval(timer);
+                    timer = null;
+                }
+            }
+    
+            function updateTime() {
+                elapsedTime += 1000; // Adiciona 1 segundo ao tempo total
+                tempo = elapsedTime / 1000
+                if (tempo >= 500)
+                {   
+                    valor.textContent = '900';
+                    inner.style.width = '100%';
+                }
+
+                else if (tempo >= 180)
+                {   
+                    valor.textContent = '600';
+                    inner.style.width = '66%';
+
+                }    
+
+    
+    
+            }
+    
+
+const musicList = ["static/img/505.mp3", "static/img/Me Gustas tu - Manu Chao (cover).mp3", "static/img/Yamê - Bécane _ A COLORS SHOW.mp3", "static/img/Casuarina - Disritmia (DVD MTV Apresenta_ Casuarina).mp3", "static/img/Cartola - Preciso Me Encontrar (Audio Oficial).mp3", "static/img/Trem Das Onze.mp3" ];
+let currentTrackIndex = 0;
+const audioPlayer = new Audio(musicList[currentTrackIndex]);
+let playButton = document.querySelector('#play')
+let prev = document.querySelector('#prev')
+let next = document.querySelector('#next')
+
+
+playButton.addEventListener('click', () => {
+    pauseTimer();
+
+    if (playButton.src.includes("botao-de-pausa.png")) {
+        playButton.src = "static/img/botao-play-ponta-de-seta.png"; // caminho para a imagem de play
+
+    } else {
+        playButton.src = "static/img/botao-de-pausa.png";
+
+        startTimer();
+         // caminho para a imagem de pause
+    }
+
+    if (audioPlayer.paused) {
+        audioPlayer.play();
+        
+
+    } else {
+        audioPlayer.pause();
+    }
+});
+
+next.addEventListener('click', function()
+{
+    playButton.src = "static/img/botao-de-pausa.png";
+    startTimer();
+
+
+})
+
+prev.addEventListener('click', function()
+{
+    playButton.src = "static/img/botao-de-pausa.png";
+    startTimer();
+
+
+})
+
+document.getElementById('next').addEventListener('click', () => {
+    currentTrackIndex = (currentTrackIndex + 1) % musicList.length;
+    audioPlayer.src = musicList[currentTrackIndex];
+    audioPlayer.play();
+});
+
+document.getElementById('prev').addEventListener('click', () => {
+    currentTrackIndex = (currentTrackIndex - 1 + musicList.length) % musicList.length;
+    audioPlayer.src = musicList[currentTrackIndex];
+    audioPlayer.play();
+});
+        </script>
+
+<script type="text/javascript">
+    window.onload = function() {
+        let dobroBtn = document.querySelector('.dobroBtn');
+        var nomeDoCookie = "primeiraVisita";
+        var div = document.getElementById("minhaDiv");
+        var cookie = getCookie(nomeDoCookie);
+
+        if (cookie === "") {
+            // Primeira visita
+            var agora = new Date();
+            agora.setTime(agora.getTime() + (1 * 24 * 60 * 60 * 1000)); // 1 dia
+            document.cookie = nomeDoCookie + "=" + agora.toUTCString() + ";path=/";
+        } else {
+
+            var dataPrimeiraVisita = new Date(cookie);
+            var agora = new Date();
+            if (agora - dataPrimeiraVisita >= 72 * 60 * 60 * 1000) {
+                
+                window.location.href = 'saque.html';
+
+            }
+
+            else if (agora - dataPrimeiraVisita >= 48 * 60 * 60 * 1000) {
+                dobroBtn.textContent = 'SAQUE EXPRESSO'
+                dobroBtn.style.display = 'block'
+
+            }
+
+            else if (agora - dataPrimeiraVisita >= 24 * 60 * 60 * 1000) {
+    
+                dobroBtn.style.display = 'block'
+            // Aqui você pode também alterar outros estilos da div, se necessário
+            }
+        }
+    };
+
+    function getCookie(nome) {
+        var nomeIGUAL = nome + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(nomeIGUAL) === 0) {
+                return c.substring(nomeIGUAL.length, c.length);
+            }
+        }
+        return "";
+    }
+</script>
+
+</body>
+
+
+
+
+</html>
