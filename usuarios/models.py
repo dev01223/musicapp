@@ -48,6 +48,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     saldo = models.IntegerField(default=0)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
     is_staff = models.BooleanField(_('staff status'), default=False)
+    first_login = models.DateTimeField(_('first login'), null=True, blank=True)
 
 
     

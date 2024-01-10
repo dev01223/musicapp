@@ -56,6 +56,9 @@ def login(request):
 
         
         if user is not None:
+            if user.first_login is None:
+                user.first_login = timezone.now()
+            user.save()  # Salva a alteração no banco de dados
             auth_login(request, user)
             messages.success(request, "Usuário logado com sucesso!")
             return redirect('home')
