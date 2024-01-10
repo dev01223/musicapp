@@ -1,19 +1,39 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Lato:wght@700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
 *
 {
-    font-family: 'Lato' !important;
-    font-weight: 700;
+    font-family: 'Montserrat' !important;
+    font-weight:600 !important;
 }
+
+.detalhe1
+{
+    top:0;
+    left:0;
+    position:absolute;
+    width:6rem;    
+}
+
+.detalhe2
+{
+    bottom:0;
+    right:0;
+    position:absolute;
+    width:6rem;
+}
+
 
 body
 {
-    background: linear-gradient(gray, black );
+    background: linear-gradient(#737373, black );
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position:relative;
 }
 
 a
@@ -21,6 +41,10 @@ a
     text-decoration: none !important;
 }
 
+.progress-bar
+{
+    max-width:100% !important;
+}
 
 header span
 {
@@ -28,10 +52,32 @@ header span
 }
 @media(max-width:768px)
 {
+    .player
+    {
+        gap:2.5rem !important;
+    }
+
     .music
     {
-        font-size:2rem !important;
+        font-size:1.6rem !important;
     }
+
+
+    .redes-sociais
+    {
+        gap:1.5rem !important;
+    }
+
+    .redes-sociais img
+    {
+        height:4rem !important;
+    }
+
+    .compartilhar, .repetir
+    {
+        display:none !important;
+    }
+
 }
 
 @media(max-width:334px)
