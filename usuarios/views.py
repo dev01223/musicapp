@@ -25,7 +25,6 @@ def register(request):
         if form.is_valid():
            
                 user = CustomUser.objects.create_user(
-                    nome = form.cleaned_data['nome'],
                     username = form.cleaned_data['username'],
                     email=form.cleaned_data['email'],
                     password=form.cleaned_data['password1'],
