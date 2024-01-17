@@ -28,7 +28,7 @@
 
 body
 {
-    background: linear-gradient(#737373, black );
+    background: linear-gradient(#6a6868, black );
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -87,3 +87,48 @@ header span
         font-size:1rem !important;
     }
 }
+
+@media(max-width:395px)
+{
+    .imagem-mc
+    {
+        width:5rem !important;
+        height: 5rem !important;
+    }
+
+    .fonte-mc
+    {
+        font-size: 1rem !important;
+    }
+}
+
+.classe-ativa
+{
+    border:solid 2px #fff;
+    border-radius:20px;
+}
+
+.classe-ativa1
+{
+    border:solid 2px #fff;
+    border-radius:20px;
+    padding:.5rem;
+}
+
+.musico
+{
+    cursor: pointer;
+}
+
+.openModal
+{
+    cursor: pointer;
+}
+
+.notificacao
+{
+    position: absolute !important;
+    top:0;
+    max-width: 90% !important;
+}
+

@@ -6,7 +6,6 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth import login as auth_login
-from .forms import LoginForm
 from django.contrib.auth import authenticate
 import logging
 import googlemaps
@@ -23,49 +22,46 @@ def register(request):
         form = ClienteRegistrationForm(request.POST, request.FILES)
         
         if form.is_valid():
-           
-                user = CustomUser.objects.create_user(
-                    username = form.cleaned_data['username'],
-                    email=form.cleaned_data['email'],
-                    password=form.cleaned_data['password1'],
-              
-                 
-                  
-                )
-                user.save()
+            user = form.save(commit=False)
+            user.set_unusable_password()
+            user.save()
 
-             
-               
-               
-                    
-                messages.success(request, 'Cadastro Realizado com sucesso!')
-                return redirect('login')
+            login(request, user)  # Certifique-se de que esta linha está correta
+
+            messages.success(request, 'Cadastro Realizado com sucesso!')
+            return redirect('playlists')
         else:
-            print("Formulário inválido")
             messages.error(request, form.errors)
-    
+
     return render(request, 'core/registro.html', {'form': form})
 
-def login(request):
-    if request.method == 'POST':
-        form = LoginForm(data=request.POST)
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
 
-        
-        if user is not None:
-            if user.first_login is None:
-                user.first_login = timezone.now()
-            user.save()  # Salva a alteração no banco de dados
-            auth_login(request, user)
-            messages.success(request, "Usuário logado com sucesso!")
-            return redirect('home')
+
+def user_login(request):
+    if request.method == 'POST':
+        username_or_email = request.POST['username_or_email']
+
+        # Verificar se é um e-mail ou nome de usuário
+        if '@' in username_or_email:
+            # É um e-mail
+            try:
+                user = CustomUser.objects.get(email=username_or_email)
+            except CustomUser.DoesNotExist:
+                messages.error(request, "E-mail não encontrado.")
+                return redirect('login')
         else:
-            messages.error(request, "Email ou senha inválidos.")
+            # É um nome de usuário
+            try:
+                user = CustomUser.objects.get(username=username_or_email)
+            except CustomUser.DoesNotExist:
+                messages.error(request, "Nome de usuário não encontrado.")
+                return redirect('login')
+
+        # Faz o login do usuário
+        auth_login(request, user)
+        messages.success(request, "Usuário logado com sucesso!")
+        return redirect('playlists')
     else:
         form = LoginForm()
-        
-        
-    return render(request, 'core/login.html')
 
+    return render(request, 'core/login.html', {'form': form})

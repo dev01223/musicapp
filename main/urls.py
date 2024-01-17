@@ -8,7 +8,9 @@ urlpatterns = [
 
     path('', home_view, name='home'),
     path('update_money/', update_saldo, name='update_money'),
-    path('saque/', saque, name='saque')
+    path('saque/', saque, name='saque'),
+    path('playlists/', playlists, name="playlists"),
+    path('update_data/', update_data, name="update_data")
 
  
 
