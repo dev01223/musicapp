@@ -14,7 +14,8 @@
 
     <header  class="fluid-container p-3 d-flex w-100 justify-content-center text-center justify-content-between" style="background:#000 !important;">
         <div class="d-flex mobile-flex align-items-center" style="gap:.5rem">
-            <img style="height:2rem;" src="{%static 'img/Untitled_design__14_-removebg-preview (1).png' %}">             <img style="height:2rem;" src="{%static 'img/Untitled_design__15_-removebg-preview (1) (1).png' %}">
+        <a href="{%url 'saque' %}"><img style="height:2rem;" src="{%static 'img/Untitled_design__14_-removebg-preview (1).png' %}"> </a>            <a href="https://api.whatsapp.com/send?phone=5521971223237"> <img style="height:2rem;" src="{%static 'img/Untitled_design__15_-removebg-preview (1) (1).png' %}">
+        </a>
 
         </div>
         <div class="d-flex align-items-center">
@@ -132,62 +133,20 @@
     let temporizador = document.querySelector('.timer')
     let saldoSpans = document.querySelectorAll(".saldo");
     let inner = document.querySelector('.inner-bar')
-    var elapsedTimeString = '{{ user.elapsed_time|default_if_none:"0" }}';
-    var saldoUserString = '{{ user.saldo|default_if_none:"0" }}';
-    
-    // Limpe a string removendo tudo o que não é dígito ou ponto.
-    elapsedTimeString = elapsedTimeString.replace(/[^\d.]/g, '');
-    saldoUserString = saldoUserString.replace(/[^\d.]/g, '');
-    
-    // Agora converta as strings limpas para floats.
-    var elapsedTime = parseFloat(elapsedTimeString);
-    var saldoUser = parseFloat(saldoUserString);
-
-    // Use toFixed(2) para formatar o saldo como uma string com duas casas decimais quando necessário para exibição.
-    var saldoUserFormatted = saldoUser.toFixed(2);
-    var larguraBarra = parseFloat('{{ user.largura_barra|default_if_none:"0" }}');
+    var elapsedTime = parseFloat({{ user.elapsed_time|default:"0" }});
+    var saldoUser = parseFloat({{ user.saldo|default:"0" }});
+    var larguraBarra = {{ user.largura_barra }};
     inner.style.width = larguraBarra + '%';      
 
-            function salvarSaldoNoLocalStorage(saldo) {
-                localStorage.setItem('saldo', saldo);
-            }
-            
-            function recuperarSaldoDoLocalStorage() {
-                // Retorna o saldo do localStorage, ou 0 se não houver saldo salvo
-                return localStorage.getItem('saldo') || '0';
-            }
-            
-            function atualizarSaldoNaTela(saldo) {
-                // Antes de atualizar, verifique se o "R$" já está presente.
-                saldoSpans.forEach((span) => {
-                    span.textContent = `R$ ${saldo}`; // Certifique-se de que "R$" não é adicionado no HTML.
-                });
-                salvarSaldoNoLocalStorage(saldo); // Salva o saldo no localStorage
-            }
-
-            function salvarLarguraBarraNoLocalStorage(percent) {
-                localStorage.setItem('larguraBarra', percent.toString());
-            }
-            
-            function recuperarLarguraBarraDoLocalStorage() {
-                // Retorna a largura da barra do localStorage, ou '0%' se não houver largura salva
-                return localStorage.getItem('larguraBarra') || '0%';
-            }
-            
-            function atualizarLarguraBarraNaTela(percent) {
-                inner.style.width = percent;
-                salvarLarguraBarraNoLocalStorage(percent); // Salva a largura da barra no localStorage
-            }
-    
+         
             function updateTime() {
                 elapsedTime += 1000; // Adiciona 1 segundo ao tempo total
                 tempo = elapsedTime / 1000;
                 temporizador.textContent = tempo.toString();
                 var percent = Math.min((tempo / 500) * 100, 100); // Assegura que não ultrapasse 100%
             
-                if(saldoUser < 50) {
-                    saldoUser += 0.1;
-                }
+                saldoUser += 0.1;
+
             
                 // Formata o saldo para sempre ter 1 dígito antes e 2 dígitos depois da vírgula
                 let saldoFormatado = formatarSaldo(saldoUser);
@@ -198,7 +157,6 @@
                 });
             
                 inner.style.width = percent + '%'; // Ajusta a largura baseada na porcentagem
-                atualizarLarguraBarraNaTela(percent + '%');
 
                 if (typeof elapsedTime !== 'undefined' && typeof saldoUser !== 'undefined' && inner) {
                     enviarDadosParaServidor();
