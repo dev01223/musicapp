@@ -43,7 +43,8 @@ def playlists(request):
     return render(request, 'core/playlists.html', context)
 
 
-def saque(request):
+def bonus(request):
+    
     user = request.user
     if user.is_authenticated:
         saldo_atual = float(user.saldo) if user.saldo else 0
@@ -81,3 +82,16 @@ def update_data(request):
             return JsonResponse({'status': 'user not authenticated'}, status=401)
     else:
         return JsonResponse({'status': 'invalid request'}, status=400)
+
+
+def saque(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    user = request.user
+
+    context = {
+        'user':user
+    }
+
+    return render(request, 'core/saqueNovo12.html', context)
