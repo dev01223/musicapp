@@ -42,7 +42,8 @@
 </div>
 
 <div class=" d-flex justify-content-center align-items-center" style="gap:.5rem">
- <span  style="color:#000; border-radius:12px; padding:.8rem 1.7rem; background:#e7e7e7; font-size:1.6rem;">R$ {{user.saldo}}</span>   </div>
+ <span  style="color:#000; border-radius:12px; padding:.8rem 1.7rem; background:#e7e7e7; font-size:1.6rem;">R$ <span>{{ user.saldo|floatformat:2 }}</span>
+</span>   </div>
 
  <span class="mt-4" style="color:#fff;"> Selecione o tipo de chave pix:</span>
 
@@ -99,7 +100,8 @@
 <p style="color:#fff; margin-bottom:.3rem !important;"></strong>Pix recebido com sucesso</strong></p>
 <p style="position:absolute; top: .5rem; right:.5rem; right: 15px;color:#fff; margin-bottom:.3rem !important;">Agora</p>
 
-<p style="color:#fff; font-weight:300;">Você recebeu um pix de AVALIADOR PREMIADO, no valor de R$ {{user.saldo}} em <span id="currentDate"> </span>.</p>
+<p style="color:#fff; font-weight:300;">Você recebeu um pix de AVALIADOR PREMIADO, no valor de R$ <span>{{ user.saldo|floatformat:2 }}</span>
+    em <span id="currentDate"> </span>.</p>
 </div>
 </div>
 
