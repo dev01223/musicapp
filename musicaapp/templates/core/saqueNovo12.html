@@ -18,7 +18,7 @@
     <style>
 
     </style>
-<header class=" p-3" style=" width: 100%; background: rgb(20, 20, 20);  position: fixed; top:0; background:green;">
+<header class=" p-3" style=" width: 100%; background: rgb(20, 20, 20);  background:green;">
 
 <div class="d-flex justify-content-center" style="gap:1rem;">
 <div class="d-flex align-items-center" style="gap:.5rem">
@@ -29,7 +29,7 @@
 </header> 
 
 
-<div class="container mb-3 " style="margin-top:85px;">
+<div class="container mb-3 mt-3 ">
     <div class="d-flex container p-3 flex-column justify-content-center align-items-center" style="max-width:30rem;  ">
         <img style="height: 10rem;" src="{%static 'img\Untitled design.png' %}">
 
@@ -94,14 +94,13 @@
 
     
 
-<div id="pixContainer" class=" align-items-center p-2" style="position:absolute; top:.5rem; background:#494949; border-radius:30px; max-width:95vw; gap:.5rem; display:none;">
-<img style="height:4rem; border-radius:20px;" src="{%static 'img/transferir (3).png' %}">
+<div id="pixContainer" class="  align-items-center p-3" style="position:absolute; top:.5rem; background:#1e1e1e; border-radius:12px; max-width:95vw; gap:.5rem; display:none;  ">
+<img style="height:2rem; border-radius:8px;" src="{%static 'img/transferir (3).png' %}">
 <div>
-<p style="color:#fff; margin-bottom:.3rem !important;"></strong>Pix recebido com sucesso</strong></p>
-<p style="position:absolute; top: .5rem; right:.5rem; right: 15px;color:#fff; margin-bottom:.3rem !important;">Agora</p>
+<p style=" color:#fff; margin-bottom:0 !important; font-size:1rem; line-height:1;"></strong>Você acaba de receber um PIX</strong></p>
+<p style=" position:absolute; top: .5rem; right:.5rem; right: 15px;color:#fff; font-size:.9rem; margin-bottom:.3rem !important;">Agora</p>
 
-<p style="color:#fff; font-weight:300;">Você recebeu um pix de AVALIADOR PREMIADO, no valor de R$ <span>{{ user.saldo|floatformat:2 }}</span>
-    em <span id="currentDate"> </span>.</p>
+<p style=" color:#fff; font-weight:300; font-size:.9rem; font-size:1rem; margin-bottom:0 !important;">PIX recebido em <span id="currentDate"> </span> no valor de R$<span>{{ user.saldo|floatformat:2 }}</span>.</p>
 </div>
 </div>
 

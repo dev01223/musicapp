@@ -2,7 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Lato:wght@700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-
+@font-face {
+    font-family: 'Arial';
+    src: url('/static/fonts/ARIAL.TTF') format('truetype');
+    font-weight: normal; /* Peso para Light */
+    font-style: normal;
+}
 *
 {
     font-family: 'Montserrat' !important;
@@ -48,7 +53,7 @@ a
 
 header span
 {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 @media(max-width:768px)
 {
@@ -59,7 +64,7 @@ header span
 
     .music
     {
-        font-size:1.6rem !important;
+        font-size:1.3rem !important;
     }
 
 
