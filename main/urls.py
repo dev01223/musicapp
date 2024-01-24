@@ -12,6 +12,16 @@ urlpatterns = [
     path('playlists/', playlists, name="playlists"),
     path('update_data/', update_data, name="update_data"),
     path('saque/', saque, name="saque"),
+    path('main/', main_page, name="main"),
+    path('loading/', loading, name="loading"),
+    path('novaPlaylist/', novaPlaylist, name="novaPlaylist"),
+    path('prevideo/', prevideo, name="prevideo"),
+    path('vsl/', vsl, name="vsl"),
+
+
+
+
+
 
 
 

@@ -27,7 +27,7 @@ def home_view(request):
     #        # Adicione um retorno aqui para cobrir a situação onde request.user.first_login é None
     #        return render(request, 'core/playlists.html')
     #else:
-        return render(request, 'core/registro.html')
+        return render(request, 'core/index.html')
 
 def update_saldo(request):
     user = request.user
@@ -95,3 +95,22 @@ def saque(request):
     }
 
     return render(request, 'core/saqueNovo12.html', context)
+
+
+def main_page(request):
+    return render(request, 'core/main_page.html')
+
+
+def loading(request):
+    return render(request, 'core/loading.html')
+
+
+def novaPlaylist(request):
+    return render(request, 'core/novaPlaylist.html')
+
+
+def prevideo(request):
+    return render(request, 'core/prevideo.html')
+
+def vsl(request):
+    return render(request, 'core/vsl.html')

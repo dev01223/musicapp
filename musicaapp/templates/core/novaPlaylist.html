@@ -12,10 +12,9 @@
 
 <body>
 
-    <header  class="fluid-container p-3 d-flex w-100 justify-content-center text-center justify-content-between" style="background:#000 !important;">
+    <header  class="fluid-container p-3 d-flex w-100 justify-content-center text-center justify-content-between" style="background:green !important;">
         <div class="d-flex mobile-flex align-items-center" style="gap:.5rem">
-        <a href="{%url 'saque' %}"><img style="height:2rem;" src="{%static 'img/Untitled_design__14_-removebg-preview (1).png' %}"> </a>            <a href="https://api.whatsapp.com/send?phone=5521971223237"> <img style="height:2rem;" src="{%static 'img/Untitled_design__15_-removebg-preview (1) (1).png' %}">
-        </a>
+       <span style="font-size:1.3rem; color:#fff;"> Music Pay</span>
 
         </div>
         <div class="d-flex align-items-center">
@@ -34,7 +33,9 @@
     <span class="d-none text-center mt-4 mb-3" style="color:#fff; font-size:1.2rem">Temporizador: <span class="timer">0</span></span> 
 
 
-    <span class="text-center mt-5 mb-5" style="color:#fff; font-size:1rem">Ouça para aumentar seu saldo!</span> 
+    <span class="text-center mt-5 mb-5" style="color:#fff; font-size:1rem">Pronto, playlist criada.<br>
+        Agora basta apertar o play para ganhar....
+        </span> 
  
  
     <div class="d-none">
@@ -121,10 +122,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-<a id="meuBotao" href="{%url 'bonus'%}" class="mb-2 mt-5">
+<a id="meuBotao2" href="{%url 'prevideo'%}" class="mb-2 mt-5">
     <img style="height:4rem; border-radius:500px;" src="{%static 'img/Untitled_design__17_-removebg-preview (1) (1).png' %}">
 </a>
-<div id="temporizador" style="color:#fff;"></div>
+<div class="d-none" id="temporizador" style="color:#fff;"></div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const botao = document.getElementById('meuBotao');
@@ -173,13 +174,14 @@
 
 <script>
     var timer = null;
+    var larguraBarra = 0;
+    var elapsedTime = 0;
+    var saldoUser = 0;
     let valor = document.querySelectorAll('.valor')
     let temporizador = document.querySelector('.timer')
     let saldoSpans = document.querySelectorAll(".saldo");
     let inner = document.querySelector('.inner-bar')
-    var elapsedTime = parseFloat({{ user.elapsed_time|default:"0" }});
-    var saldoUser = parseFloat({{ user.saldo|default:"0" }});
-    var larguraBarra = {{ user.largura_barra }};
+
     let dailyIncrease = 0; // Aumento diário do saldo
 
     let lastIncreaseDate = new Date(); // Data do último aumento
@@ -421,7 +423,25 @@ document.getElementById('prev').addEventListener('click', () => {
         }
     }
 
-
+    window.onload = function() {
+        // Carregar inner.width do Local Storage
+        var storedInnerWidth = localStorage.getItem('innerWidth');
+        if (storedInnerWidth) {
+            inner.style.width = storedInnerWidth;
+        }
+    
+        // Carregar user.saldo do Local Storage
+        var storedSaldoUser = localStorage.getItem('userSaldo');
+        if (storedSaldoUser) {
+            saldoUser = parseFloat(storedSaldoUser);
+            let saldoFormatado = formatarSaldo(saldoUser);
+            saldoSpans.forEach((span) => {
+                span.textContent = saldoFormatado;
+            });
+        }
+    };
+    
+    // Iniciar o temporizador
 </script>
 
 </body>

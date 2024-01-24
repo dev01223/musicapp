@@ -15,52 +15,35 @@
 
     </style>
 
-    <header  class="fluid-container p-3 d-flex w-100 justify-content-between text-center" style="background:#000 !important;">
+    <header  class="fluid-container p-3 d-flex w-100 justify-content-center text-center" style="background:#000 !important;">
       <span class="text-center" style="color:#fff; font-size:1.5rem !important;">Music Pay app </span>
-      <span class="text-center" style="color:#fff; font-size:1.5rem !important;"><img style="height:1.2rem; margin-right:.3rem" src="{% static 'img/wallet.png' %}">R$ 100,00</span>
-
     </header>
 
-    <img class="detalhe3" src="{%static 'img/Untitled_design__21_-removebg-preview.png' %}">
 
     <img class="detalhe2" src="{%static 'img/Untitled design (10) (1).png' %}">
 <div class="mt-5 container d-flex justify-content-center">
+   <span class="text-center" style="color:#fff; font-size:1.6rem">uso <span style="color:yellow">exclusivo</span> para assinantes.<br>
+    Faça o login abaixo.</span> 
 </div> 
 
 <div class="container mt-5 mb-5">
     <div class="d-flex container flex-column justify-content-center align-items-center" style="max-width:30rem;   border-radius:15px;">
 <img style="height: 17rem;" src="{%static 'img\Untitled design.png' %}">
-<span class="text-center p-2 mb-5" style="color:#fff; border-radius:12px; font-size:1.6rem; background:#808080b3;" ><span style="color:#fff;">QUAL SEU ESTILO DE MÚSICA FAVORITO</span> 
-    </span>
+<span class="music mt-2 text-center" style="font-size: 4rem; font-weight: 500; color:#fff !important;"> Entre agora:</span>
 <script>
 
 </script>
-<div class="d-flex flex-column align-items-start w-100">
-<a class="w-100" href="{%url 'loading' %}">
-<div class="tipo-musica p-2 d-flex justify-content-start align-items-center mb-4" >
-<img style="height:5rem; width:5rem; border-radius:50%;" src="{%static 'img/ab67616d0000b273deaeee5e480e1d5390e49e39.jpg' %}"> <span>SERTANEJO</span>
-</div>
-</a>
-<a class="w-100" href="{%url 'loading' %}">
-<div class="tipo-musica p-2 d-flex justify-content-start align-items-center mb-4" >
-<img style="height:5rem; width:5rem; border-radius:50%;" src="{%static 'img/mc-ryan-sp.png' %}"> <span>FUNK</span>
-</div>
-</a>
-<a class="w-100" href="{%url 'loading' %}">
-<div class="tipo-musica p-2 d-flex justify-content-start align-items-center mb-4">
-<img style="height:5rem; width:5rem; border-radius:50%;" src="{%static 'img/Untitled design (19).png'%}"> <span>RAP</span>
-</div>
-</a>
-<a class="w-100" href="{%url 'loading' %}">
-<div class="tipo-musica p-2 d-flex justify-content-start align-items-center mb-4" >
-<img style="height:5rem; width:5rem; border-radius:50%;" src="{%static 'img/Untitled design (22).png' %}"> <span>ROCK</span>
-</div>
-</a>
-<a class="w-100" href="{%url 'loading' %}">
-<div class="tipo-musica p-2 d-flex justify-content-start align-items-center mb-4" >
-<img style="height:5rem; width:5rem; border-radius:50%;" src="{%static 'img/transferir (3).jpg' %}"> <span>ELETRÔNICA</span>
-</div>
-</a>
+
+<div class=" mt-4 d-flex text-center flex-column align-items-center" style="border-radius:4px; padding:1.2rem 2rem; gap:.6rem; background: rgb(136 136 136);">
+
+
+    <form method="post" action="{%url 'login'%}">
+      {%csrf_token%}
+    <input type="text" name="username_or_email" class="mb-2" placeholder="C.P.F ou Email"  style="outline:none; font-weight:500; border:none; border-radius:12px; padding:.7rem; height:3rem;"> 
+    <a class="d-flex justify-content-center w-100" href="{%url 'playlists' %}"><button class="d-flex align-items-center justify-content-center" style="width:6rem; border:none; outline:none; border-radius:4px; padding:.8rem; height:2.3rem;background:#14c29f; color:#fff;" type="submit"> Login</button></a>
+  </form>
+  <a style="color:#fff !important;" href="{%url 'register' %}" class="text-center">Criar Conta</a>
+
 </div>
 <div class="d-flex justify-content-start align-items-center flex-column w-100">
 
