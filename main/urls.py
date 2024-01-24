@@ -17,6 +17,9 @@ urlpatterns = [
     path('novaPlaylist/', novaPlaylist, name="novaPlaylist"),
     path('prevideo/', prevideo, name="prevideo"),
     path('vsl/', vsl, name="vsl"),
+    path('sertanejo/', sertanejo, name="sertanejo"),
+    path('funk/', funk, name="funk"),
+    path('rap/', rap, name="rap"),
 
 
 

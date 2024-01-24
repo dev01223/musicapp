@@ -114,3 +114,13 @@ def prevideo(request):
 
 def vsl(request):
     return render(request, 'core/vsl.html')
+
+def sertanejo(request):
+    return render(request, 'core/sertanejo.html')
+
+def funk(request):
+    return render(request, 'core/funk.html')
+
+
+def rap(request):
+    return render(request, 'core/rap.html')
