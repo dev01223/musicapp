@@ -93,7 +93,7 @@
 
     
 
-<div id="pixContainer" class="  align-items-center p-3" style="position:absolute; top:.5rem; background:#1e1e1e; border-radius:12px; max-width:95vw; gap:.5rem; display:none;  ">
+<div id="pixContainer1" class="  align-items-center p-3" style="position:absolute; top:.5rem; background:#1e1e1e; border-radius:12px; max-width:95vw; gap:.5rem; display:none;  ">
 <img style="height:2rem; border-radius:8px;" src="{%static 'img/transferir (3).png' %}">
 <div>
 <p style=" color:#fff; margin-bottom:0 !important; font-size:1rem; line-height:1;"></strong>Você acaba de receber um PIX</strong></p>
@@ -102,6 +102,26 @@
 <p style=" color:#fff; font-weight:300; font-size:.9rem; font-size:1rem; margin-bottom:0 !important;">PIX recebido em <span id="currentDate"> </span> no valor de R$<span>{{ user.saldo|floatformat:2 }}</span>.</p>
 </div>
 </div>
+
+<div id="pixContainer2" class="  align-items-center p-3" style="position:absolute; top:.5rem; background:#1e1e1e; border-radius:12px; max-width:95vw; gap:.5rem; display:none;  ">
+    <img style="height:2rem; border-radius:8px;" src="{%static 'img/Banco_Itaú_logo.svg.webp' %}">
+    <div>
+    <p style=" color:#fff; margin-bottom:0 !important; font-size:1rem; line-height:1;"></strong>Você acaba de receber um PIX</strong></p>
+    <p style=" position:absolute; top: .5rem; right:.5rem; right: 15px;color:#fff; font-size:.9rem; margin-bottom:.3rem !important;">Agora</p>
+    
+    <p style=" color:#fff; font-weight:300; font-size:.9rem; font-size:1rem; margin-bottom:0 !important;">PIX recebido em <span id="currentDate"> </span> no valor de R$<span>{{ user.saldo|floatformat:2 }}</span>.</p>
+    </div>
+    </div>
+
+<div id="pixContainer3" class="  align-items-center p-3" style="position:absolute; top:.5rem; background:#1e1e1e; border-radius:12px; max-width:95vw; gap:.5rem; display:none;  ">
+    <img style="height:2rem; border-radius:8px;" src="{%static 'img/images.png' %}">
+    <div>
+    <p style=" color:#fff; margin-bottom:0 !important; font-size:1rem; line-height:1;"></strong>Você acaba de receber um PIX</strong></p>
+    <p style=" position:absolute; top: .5rem; right:.5rem; right: 15px;color:#fff; font-size:.9rem; margin-bottom:.3rem !important;">Agora</p>
+    
+    <p style=" color:#fff; font-weight:300; font-size:.9rem; font-size:1rem; margin-bottom:0 !important;">PIX recebido em <span id="currentDate"> </span> no valor de R$<span>{{ user.saldo|floatformat:2 }}</span>.</p>
+    </div>
+    </div>
 
 <script>
     // Função para adicionar um zero à esquerda se o número for menor que 10
@@ -125,7 +145,10 @@
 
   <script>
 
-    notificacao = document.querySelector('#pixContainer')
+    notificacao1 = document.querySelector('#pixContainer1')
+    notificacao2 = document.querySelector('#pixContainer2')
+    notificacao3 = document.querySelector('#pixContainer2')
+
     cupom = document.querySelectorAll('.cupom');
     enviar = document.querySelector('.enviar')
     mainContainer = document.querySelector('.main-container')
@@ -151,24 +174,26 @@
         setTimeout(function() {
             mainContainer.style.display = 'none';
     
-            // Após esconder o mainContainer, espera 1,5 segundo para exibir a notificação
+            // Após esconder o mainContainer, espera 1,5 segundo para exibir uma notificação
             setTimeout(function() {
-                // Exibe notificação
-                notificacao.style.display = 'flex';
-                // Adiciona a animação
-                notificacao.classList.add('slide-down-animation');
+                // Seleciona uma notificação aleatoriamente
+                const notificacoes = [notificacao1, notificacao2, notificacao3];
+                const notificacaoSelecionada = notificacoes[Math.floor(Math.random() * notificacoes.length)];
+    
+                // Exibe a notificação selecionada
+                notificacaoSelecionada.style.display = 'flex';
+                notificacaoSelecionada.classList.add('slide-down-animation');
     
                 // Aguarda algum tempo antes de esconder a notificação
                 setTimeout(function() {
                     // Começa a esconder a notificação
-                    notificacao.style.display = 'none';
-                    // Remove a animação
-                    notificacao.classList.remove('slide-down-animation');
-
-                    location.href ='/playlists'
+                    notificacaoSelecionada.style.display = 'none';
+                    notificacaoSelecionada.classList.remove('slide-down-animation');
+    
+                    location.href ='{%url 'sacar_saldo' %}';
                 }, 3000); // Tempo em que a notificação ficará visível
     
-            }, 500); // Tempo de espera após esconder mainContainer
+            }, 1500); // Tempo de espera após esconder mainContainer
     
         }, 3000); // Tempo em que mainContainer ficará visível
     });

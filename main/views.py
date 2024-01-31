@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils import timezone
 from datetime import timedelta
 from usuarios.models import *
@@ -124,3 +124,10 @@ def funk(request):
 
 def rap(request):
     return render(request, 'core/rap.html')
+
+
+def sacar_saldo(request):
+    user = request.user
+    user.saldo = 0
+    user.save()
+    return redirect('playlists')

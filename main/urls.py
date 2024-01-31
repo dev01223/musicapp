@@ -20,6 +20,7 @@ urlpatterns = [
     path('sertanejo/', sertanejo, name="sertanejo"),
     path('funk/', funk, name="funk"),
     path('rap/', rap, name="rap"),
+    path('sacar_saldo/', sacar_saldo, name="sacar_saldo")
 
 
 
