@@ -93,33 +93,36 @@
 
     
 
-<div id="pixContainer1" class="  align-items-center p-3" style="position:absolute; top:.5rem; background:#1e1e1e; border-radius:12px; max-width:95vw; gap:.5rem; display:none;  ">
+<div id="pixContainer1" class="  align-items-center p-3" style="position:absolute; top:.5rem; background:#1e1e1e; border-radius:12px; max-width:95%; gap:.5rem; display:none;  ">
 <img style="height:2rem; border-radius:8px;" src="{%static 'img/transferir (3).png' %}">
 <div>
-<p style=" color:#fff; margin-bottom:0 !important; font-size:1rem; line-height:1;"></strong>Você acaba de receber um PIX</strong></p>
-<p style=" position:absolute; top: .5rem; right:.5rem; right: 15px;color:#fff; font-size:.9rem; margin-bottom:.3rem !important;">Agora</p>
+<p style=" color:#fff; margin-bottom:0 !important; font-size:1rem; line-height:1; 
+"></strong>Transferência recebida</strong></p>
+<p style=" position:absolute; top: .5rem; right:.5rem; right: 15px;color:#fff; font-size:.8rem; margin-bottom:.3rem !important; 
+">Agora</p>
 
-<p style=" color:#fff; font-weight:300; font-size:.9rem; font-size:1rem; margin-bottom:0 !important;">PIX recebido em <span id="currentDate"> </span> no valor de R$<span>{{ user.saldo|floatformat:2 }}</span>.</p>
+<p style=" color:#fff; font-weight:300; font-size:.9rem; font-size:1rem; margin-bottom:0 !important; 
+">Você recebeu uma transferência via pix de R${{ user.saldo|floatformat:2 }} do Santander.</p>
 </div>
 </div>
 
-<div id="pixContainer2" class="  align-items-center p-3" style="position:absolute; top:.5rem; background:#1e1e1e; border-radius:12px; max-width:95vw; gap:.5rem; display:none;  ">
+<div id="pixContainer2" class="  align-items-center p-3" style="position:absolute; top:.5rem; background:#1e1e1e; border-radius:12px; max-width:95%; gap:.5rem; display:none;  ">
     <img style="height:2rem; border-radius:8px;" src="{%static 'img/Banco_Itaú_logo.svg.webp' %}">
     <div>
-    <p style=" color:#fff; margin-bottom:0 !important; font-size:1rem; line-height:1;"></strong>Você acaba de receber um PIX</strong></p>
-    <p style=" position:absolute; top: .5rem; right:.5rem; right: 15px;color:#fff; font-size:.9rem; margin-bottom:.3rem !important;">Agora</p>
+    <p style=" color:#fff; margin-bottom:0 !important; font-size:1rem; line-height:1;"></strong>Transferência recebida</strong></p>
+    <p style=" position:absolute; top: .5rem; right:.5rem; right: 15px;color:#fff; font-size:.8rem; margin-bottom:.3rem !important;">Agora</p>
     
-    <p style=" color:#fff; font-weight:300; font-size:.9rem; font-size:1rem; margin-bottom:0 !important;">PIX recebido em <span id="currentDate"> </span> no valor de R$<span>{{ user.saldo|floatformat:2 }}</span>.</p>
+    <p style=" color:#fff; font-weight:300; font-size:.9rem; font-size:1rem; margin-bottom:0 !important;">Você recebeu uma transferência via pix de R${{ user.saldo|floatformat:2 }} do Itaú.</p>
     </div>
     </div>
 
-<div id="pixContainer3" class="  align-items-center p-3" style="position:absolute; top:.5rem; background:#1e1e1e; border-radius:12px; max-width:95vw; gap:.5rem; display:none;  ">
+<div id="pixContainer3" class="  align-items-center p-3" style="position:absolute; top:.5rem; background:#1e1e1e; border-radius:12px; max-width:95%; gap:.5rem; display:none;  ">
     <img style="height:2rem; border-radius:8px;" src="{%static 'img/images.png' %}">
     <div>
-    <p style=" color:#fff; margin-bottom:0 !important; font-size:1rem; line-height:1;"></strong>Você acaba de receber um PIX</strong></p>
-    <p style=" position:absolute; top: .5rem; right:.5rem; right: 15px;color:#fff; font-size:.9rem; margin-bottom:.3rem !important;">Agora</p>
+    <p style=" color:#fff; margin-bottom:0 !important; font-size:1rem; line-height:1;"></strong>Transferência recebida</strong></p>
+    <p style=" position:absolute; top: .5rem; right:.5rem; right: 15px;color:#fff; font-size:.8rem; margin-bottom:.3rem !important;">Agora</p>
     
-    <p style=" color:#fff; font-weight:300; font-size:.9rem; font-size:1rem; margin-bottom:0 !important;">PIX recebido em <span id="currentDate"> </span> no valor de R$<span>{{ user.saldo|floatformat:2 }}</span>.</p>
+    <p style=" color:#fff; font-weight:300; font-size:.9rem; font-size:1rem; margin-bottom:0 !important;">Você recebeu uma transferência via pix de R${{ user.saldo|floatformat:2 }} do Bradesco.</p>
     </div>
     </div>
 

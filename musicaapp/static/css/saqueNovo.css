@@ -1,11 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&family=Lato:wght@700;900&display=swap');
 
-*
-{
-    font-family: 'Lato' !important;
-    font-weight: 700;
-}
+
 
 body
 {
@@ -25,6 +21,19 @@ a
 header span
 {
     font-size: 1.2rem;
+}
+
+#pixContainer1, #pixContainer2, #pixContainer3
+{
+    background: #c2bebe !important;
+    border-radius: 20px;
+}
+
+#pixContainer1 div p, #pixContainer2 div p, #pixContainer3 div p
+{
+    font-weight: 300 !important;
+    color: #000 !important;
+
 }
 
 @media(max-width:334px)
