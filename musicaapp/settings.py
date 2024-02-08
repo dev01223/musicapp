@@ -81,15 +81,8 @@ TEMPLATES = [
 ]
 WSGI_APPLICATION = 'musicaapp.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+DATABASES  = {
+    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 
@@ -122,6 +115,7 @@ TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 
 USE_TZ = True
+
 
 
 # Static files (CSS, JavaScript, Images)
