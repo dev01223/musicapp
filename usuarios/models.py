@@ -45,11 +45,11 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     username = models.CharField(_('usuario'), max_length=30, unique=True)
-    saldo = models.CharField(max_length=500000, blank=True, null=True)
+    saldo = models.CharField(max_length=9000, blank=True, null=True)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
     is_staff = models.BooleanField(_('staff status'), default=False)
     first_login = models.DateTimeField(_('first login'), null=True, blank=True)
-    elapsed_time = models.CharField(max_length=50000000, blank=True, null=True)
+    elapsed_time = models.CharField(max_length=9000, blank=True, null=True)
     largura_barra = models.IntegerField(default=0)
 
 
