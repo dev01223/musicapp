@@ -94,7 +94,7 @@
     
 
 <div id="pixContainer1" class="  align-items-center p-3" style="position:absolute; top:.5rem; background:#1e1e1e; border-radius:12px; max-width:95%; gap:.5rem; display:none;  ">
-<img style="height:2rem; border-radius:8px;" src="{%static 'img/transferir (3).png' %}">
+    <img style="height:2rem; border-radius:8px;" src="{%static 'img/nubank-logo-2.png' %}">
 <div>
 <p style=" color:#fff; margin-bottom:0 !important; font-size:1rem; line-height:1; 
 "></strong>Transferência recebida</strong></p>
@@ -102,12 +102,12 @@
 ">Agora</p>
 
 <p style=" color:#fff; font-weight:300; font-size:.9rem; font-size:1rem; margin-bottom:0 !important; 
-">Você recebeu uma transferência via pix de R${{ user.saldo|floatformat:2 }} do Santander.</p>
+">Você recebeu uma transferência via pix de R${{ user.saldo|floatformat:2 }} da Nubank.</p>
 </div>
 </div>
 
 <div id="pixContainer2" class="  align-items-center p-3" style="position:absolute; top:.5rem; background:#1e1e1e; border-radius:12px; max-width:95%; gap:.5rem; display:none;  ">
-    <img style="height:2rem; border-radius:8px;" src="{%static 'img/Banco_Itaú_logo.svg.webp' %}">
+    <img style="height:2rem; border-radius:8px;" src="{%static 'img/nubank-logo-2.png' %}">
     <div>
     <p style=" color:#fff; margin-bottom:0 !important; font-size:1rem; line-height:1;"></strong>Transferência recebida</strong></p>
     <p style=" position:absolute; top: .5rem; right:.5rem; right: 15px;color:#fff; font-size:.8rem; margin-bottom:.3rem !important;">Agora</p>
@@ -147,27 +147,17 @@
 
 
   <script>
-
-    notificacao1 = document.querySelector('#pixContainer1')
-    notificacao2 = document.querySelector('#pixContainer2')
-    notificacao3 = document.querySelector('#pixContainer2')
-
+    notificacao1 = document.querySelector('#pixContainer1');
     cupom = document.querySelectorAll('.cupom');
-    enviar = document.querySelector('.enviar')
-    mainContainer = document.querySelector('.main-container')
+    enviar = document.querySelector('.enviar');
+    mainContainer = document.querySelector('.main-container');
 
-    
-    cupom.forEach((button)=> 
-    {
-        button.addEventListener('click', function()
-        {   
+    cupom.forEach((button) => {
+        button.addEventListener('click', function() {   
             cupom.forEach(btn => btn.style.background = '#3b3b3b');
-            this.style.background = 'linear-gradient(to right, rgb(38 176 44),rgb(9 61 14))'
-
-
-        })
-    })
-
+            this.style.background = 'linear-gradient(to right, rgb(38, 176, 44), rgb(9, 61, 14))';
+        });
+    });
 
     enviar.addEventListener('click', function() {
         // Exibe mainContainer
@@ -179,9 +169,8 @@
     
             // Após esconder o mainContainer, espera 1,5 segundo para exibir uma notificação
             setTimeout(function() {
-                // Seleciona uma notificação aleatoriamente
-                const notificacoes = [notificacao1, notificacao2, notificacao3];
-                const notificacaoSelecionada = notificacoes[Math.floor(Math.random() * notificacoes.length)];
+                // Sempre seleciona o pixContainer1
+                const notificacaoSelecionada = notificacao1;
     
                 // Exibe a notificação selecionada
                 notificacaoSelecionada.style.display = 'flex';
@@ -200,20 +189,15 @@
     
         }, 3000); // Tempo em que mainContainer ficará visível
     });
-    mainContainer.addEventListener('click', function(event)
-    {   
+
+    mainContainer.addEventListener('click', function(event) {   
         event.stopPropagation();
-        if(event.target === mainContainer)
-        mainContainer.style.display = 'none'
-        
+        if(event.target === mainContainer) {
+            mainContainer.style.display = 'none';
+        }
+    });
+</script>
 
-    })
-
-  
-
-
-
-    </script>
 
 </body>
 
