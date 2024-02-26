@@ -27,7 +27,7 @@ def home_view(request):
     #        # Adicione um retorno aqui para cobrir a situação onde request.user.first_login é None
     #        return render(request, 'core/playlists.html')
     #else:
-        return render(request, 'core/registro.html')
+        return render(request, 'core/login.html')
 
 def update_saldo(request):
     user = request.user
